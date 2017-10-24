@@ -72,3 +72,11 @@ E:\学习\五四公社文章评论管理\Comment_\Comment\bin\zh-Hans\Microsoft.
 E:\学习\五四公社文章评论管理\Comment_\Comment\obj\Debug\Comment.csprojResolveAssemblyReference.cache
 E:\学习\五四公社文章评论管理\Comment_\Comment\obj\Debug\Comment.dll
 E:\学习\五四公社文章评论管理\Comment_\Comment\obj\Debug\Comment.pdb
+E:\学习\五四公社文章评论管理\Comment_\Comment\bin\Ivony.Core.dll
+E:\学习\五四公社文章评论管理\Comment_\Comment\bin\Ivony.Html.dll
+E:\学习\五四公社文章评论管理\Comment_\Comment\bin\Ivony.Html.Parser.dll
+E:\学习\五四公社文章评论管理\Comment_\Comment\bin\Ivony.Html.Parser.Regulars.dll
+E:\学习\五四公社文章评论管理\Comment_\Comment\bin\Skay.WebBot.dll
+E:\学习\五四公社文章评论管理\Comment_\Comment\bin\Ivony.Core.xml
+E:\学习\五四公社文章评论管理\Comment_\Comment\bin\Ivony.Html.xml
+E:\学习\五四公社文章评论管理\Comment_\Comment\bin\Ivony.Html.Parser.xml

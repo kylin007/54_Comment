@@ -7,8 +7,10 @@ namespace Comment.Models
 {
     public class User
     {
-        public string name { get; set; }
+        public int Id { get; set; }
 
-        public string value { get; set; }
+        public int value { get; set; }
+
+        public string name { get; set; }
     }
 }

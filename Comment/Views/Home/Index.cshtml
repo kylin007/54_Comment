@@ -3,15 +3,17 @@
 }
 
 <h2 class="h2" style="margin-bottom:20px;">五四公社文章评论管理页面</h2>
+<br />
+<hr />
+<br />
 <div class="container" style="height:100%;max-width:100%;">
     <div class="row">
         <div class="col-md-6">
-            <input id="UrlInput" type="text" class="form-control " placeholder="输入跳转网址" style="width:40%; float:left"><button class="btn btn-default" onclick="gotoUrl()" style="float:left;">跳转页面</button>
-            <iframe name="MyIframe" height="500px;" width="100%;"  frameborder=0 src="http://www.baidu.com" style="margin-top:50px; min-width:900px;">
-            </iframe>
+            <input id="UrlInput" type="text" class="form-control " placeholder="输入跳转网址" style="width:40%; float:left; margin-left:10%;"><button class="btn btn-default" onclick="gotoUrl()" style="float:left;">跳转页面</button>
+            <iframe id="MyIframe" name="MyIframe" height="500px;" width="100%;" frameborder=0 src="http://www.baidu.com" style="margin-top:50px; min-width:900px;"></iframe>
         </div>
         <div class="col-md-4 col-md-offset-1" style="height:500px;">
-            <table class="table">
+            <table class="table" id="tab_Com">
                 <thead>
                     <tr>
                         <th>用户昵称</th>
@@ -22,36 +24,46 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td style="line-height:30px;">用户昵称</td>
-                        <td><input class="comment_input form-control" value="评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容" /></td>
-                        <td><input class="comment_input form-control" value="2017年10月23日 11:51" /></td>
-                        <td style="line-height:30px;"><a href="" onclick="remove_comment(this)">移除</a></td>
+                        <td class="comm_name" style="line-height:30px;" data-value="1">用户昵称</td>
+                        <td><input class="comment_input form-control comm_value" value="评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容" /></td>
+                        <td><input class="comment_input form-control comm_time" value="2017/10/24 18:07:15" /></td>
+                        <td style="line-height:30px;"><a style="cursor: pointer;" onclick="remove_comment(this)">移除</a></td>
                     </tr>
                     <tr>
                         <td style="line-height:30px;">用户昵称</td>
                         <td><input class="comment_input form-control" value="评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容" /></td>
-                        <td><input class="comment_input form-control" value="2017年10月23日 11:51" /></td>
-                        <td style="line-height:30px;"><a href="" onclick="remove_comment(this)">移除</a></td>
+                        <td><input class="comment_input form-control" value="2017/10/27 15:07:15" /></td>
+                        <td style="line-height:30px;"><a onclick="remove_comment(this)">移除</a></td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
+    <br />
+    <hr />
+    <h3>添加用户</h3><label>点击用户即可添加</label>
     <div class="row">
-        <div class="col-md-8" style="margin-top:20px;">
+        <div class="col-md-6 col-md-offset-1" style="margin-top:40px;">
             <table class="table">
-            <tbody>
-                <tr>
-                    @foreach (var user in ViewBag.Users)
+                <tbody>
+                    @foreach (var users in ViewBag.Users)
                     {
-                        <td onclick="addUserComment(@user.value)">@user.name</td>
+                        <tr>
+                            @foreach (var user in users)
+                            {
+                                <td style="cursor: pointer;" onclick='addUserComment(@user.value, "@user.name")'>@user.name</td>//
+                            }
+                        </tr>
                     }
-                </tr>
-            </tbody>
+
+                </tbody>
             </table>
         </div>
-        <div class="col-md-1 col-md-offset-1" style="margin-top:20px;">
-            <button class="btn btn-default" onclick="" style="float:left;">随机添加</button>
+        <div class="col-md-1 col-md-offset-1" style="margin-top:40px;">
+            <button class="btn btn-success" onclick="RandomlyAdd()" style="float:left;">随机添加(10条内)</button>
+        </div>
+        <div class="col-md-1" style="margin-top:40px;">
+            <button class="btn btn-success" onclick="Send()" style="float:left;">提交</button>
         </div>
         
     </div>

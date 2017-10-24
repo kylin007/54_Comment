@@ -7,6 +7,8 @@ namespace Comment.Models
 {
     public class Comment_text
     {
+        public int Id { get; set; }
+
         public string value { get; set; }
     }
 }
