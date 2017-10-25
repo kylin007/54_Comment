@@ -39,7 +39,7 @@ function remove_comment(thisa){
 function addUserComment(userId, userName) {
     var page_url = document.getElementById("MyIframe").getAttribute("src").toString();
     if (page_url.indexOf("http://www.hi-54.com/a-") < 0) {
-        alert("请选择五四文章页，页面格式如下：http://www.hi-54.com/a-*")
+        layer.alert("请选择五四文章页，页面格式如下：http://www.hi-54.com/a-*")
         return;
     }
     $.ajax({
@@ -60,14 +60,14 @@ function addUserComment(userId, userName) {
             $("#tab_Com").append(Html);
         },
         error: function (result) {
-            alert("生成评论出现错误");
+            layer.alert("生成评论出现错误");
         }
     })
 }
 function RandomlyAdd() {
     var page_url = document.getElementById("MyIframe").getAttribute("src").toString();
     if (page_url.indexOf("http://www.hi-54.com/a-") < 0) {
-        alert("请选择五四文章页，页面格式如下：http://www.hi-54.com/a-*")
+        layer.alert("请选择五四文章页，页面格式如下：http://www.hi-54.com/a-*")
         return;
     }
     var number = randomNum(1, 10);
@@ -98,7 +98,7 @@ function RandomlyAdd() {
         })
     }
     if(errornumber!=0){
-        alert("出现未知错误，仅生成" + number - errornumber + "条");
+        layer.alert("出现未知错误，仅生成" + number - errornumber + "条");
     }
 }
 function randomNum(minNum, maxNum) {
@@ -119,12 +119,16 @@ function Send() {
     var OName = OTable.getElementsByClassName("comm_name");
     var OValue = OTable.getElementsByClassName("comm_value");
     var OTime = OTable.getElementsByClassName("comm_time");
-    var number = 0;
+    var successnumber = 0;
+    var errornumber = 0;
     for (var i = 0; i < OName.length; i++) {
         var NowTime = new Date();
 
         //2把字符串格式转换为日期类
         var comm_Time = OTime[i].value.toString();
+        var comm_Name = OName[i].innerText;
+        var comm_Value = OValue[i].value;
+        var comm_UId = OName[i].attributes["data-value"].value.toString();
 
         comm_Time = comm_Time.substring(0, 19);
         comm_Time = comm_Time.replace(/-/g, '/');
@@ -134,11 +138,42 @@ function Send() {
 
         if (timestamp > now_time) {
             //存入数据库等待执行
-            alert("存入数据库等待执行");
+            $.ajax({
+                url: '/Home/AddDBComment',
+                type: 'POST', //GET
+                dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                async: false,
+                data: {
+                    UId: comm_UId,
+                    Name: comm_Name,
+                    Text: comm_Value,
+                    CommTime: comm_Time
+                },
+                success: function (result) {
+                    var json = eval("(" + result + ")");
+                    var resultValue = json[0].result;
+                    if (resultValue || resultValue == "True") {
+                        successnumber++;
+                    }
+                    else {
+                        errornumber++;
+                    }
+                },
+                error: function (result) {
+                    errornumber++;
+                }
+            });
         }
         else {
             //现在执行插入任务
-            alert("现在执行插入任务");
+            //alert("现在执行插入任务");
+        }
+
+        if (errornumber != 0) {
+            layer.alert((OName.length-successnumber-errornumber) + "条数据成功发布\n" + successnumber + "条数据因大于系统时间存入数据库等待执行\n" + errornumber + "条插入数据库失败\n")
+        }
+        else {
+            layer.alert((OName.length - successnumber) + "条数据成功发布\n" + successnumber + "条数据因大于系统时间存入数据库等待执行\n")
         }
 
         //$.ajax({

@@ -18,7 +18,8 @@ namespace Comment
             // 生产准备时，请使用 http://modernizr.com 上的生成工具来仅选择所需的测试。
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*",
-                        "~/Scripts/index.js"));
+                        "~/Scripts/index.js",
+                        "~/Content/layer/layer.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
@@ -26,7 +27,8 @@ namespace Comment
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/layer/mobile/need/layer.css"));
         }
     }
 }

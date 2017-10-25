@@ -104,11 +104,11 @@ namespace Comment.Controllers
                 Set_UserAndComment();
             }
             Random ran = new Random();
-            int index = ran.Next(0, Users.Count-1);
+            int index = ran.Next(0, Users.Count);
             string UserName = Users[index].name.ToString();
             string UserValue = Users[index].value.ToString();
 
-            index = ran.Next(0, Comments.Count - 1);
+            index = ran.Next(0, Comments.Count);
             string CommentValue = Comments[index].value.ToString();
 
             string returnjson = "[{     'UserName': '"+UserName+"'    ,'UserValue': '"+UserValue+"'    ,'CommentValue': '"+CommentValue+"'  }] ";
@@ -128,7 +128,7 @@ namespace Comment.Controllers
             }
             Random ran = new Random();
 
-            int index = ran.Next(0, Comments.Count - 1);
+            int index = ran.Next(0, Comments.Count);
             string CommentValue = Comments[index].value.ToString();
 
             string returnjson = "[{  'CommentValue': '" + CommentValue + "'  }] ";
@@ -175,6 +175,29 @@ namespace Comment.Controllers
             
 
             string returnjson = "[{  'Time': '" + rTime + "'  }] ";
+            return Json(returnjson);
+        }
+
+
+        public JsonResult AddDBComment(string text)
+        {
+            string returnjson = "";
+            int UId = int.Parse(Request.Form[0].ToString());
+            string Name = Request.Form[1].ToString();
+            string Text = Request.Form[2].ToString();
+            DateTime CommTime = DateTime.Parse(Request.Form[3].ToString());
+            DateTime dt_now = DateTime.Now;
+
+            string sql = string.Format("INSERT INTO [CreationComment] VALUES ('{0}','{1}','{2}','{3}','{4}')", UId, Name, Text, CommTime, dt_now);
+
+            if (database.InsertInTo(sql))
+            {
+                returnjson = "[{  'result': '" + true + "'  }] ";
+            }
+            else
+            {
+                returnjson = "[{  'result': '" + false + "'  }] ";
+            }
             return Json(returnjson);
         }
 

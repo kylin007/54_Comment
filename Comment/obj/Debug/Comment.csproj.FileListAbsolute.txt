@@ -80,3 +80,6 @@ E:\学习\五四公社文章评论管理\Comment_\Comment\bin\Skay.WebBot.dll
 E:\学习\五四公社文章评论管理\Comment_\Comment\bin\Ivony.Core.xml
 E:\学习\五四公社文章评论管理\Comment_\Comment\bin\Ivony.Html.xml
 E:\学习\五四公社文章评论管理\Comment_\Comment\bin\Ivony.Html.Parser.xml
+E:\学习\五四公社文章评论管理\Comment_\Comment\bin\WebActivator.dll
+E:\学习\五四公社文章评论管理\Comment_\Comment\bin\WebBackgrounder.dll
+E:\学习\五四公社文章评论管理\Comment_\Comment\bin\WebBackgrounder.EntityFramework.dll
